@@ -1,0 +1,3 @@
+DROP TABLE rating;
+DROP TABLE song;
+DROP TABLE user;
