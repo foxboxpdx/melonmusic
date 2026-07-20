@@ -1,0 +1,14 @@
+[package]
+name = "melonmusic-common"
+version = "0.1.0"
+authors = ["Fox Box <foxboxpdx@gmail.com>"]
+edition = "2024"
+description = "Axum and Yew powered web app for sharing music links (common)"
+repository = "https://github.com/foxboxpdx/melonmusic"
+
+[dependencies]
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.150"
+num_enum = "0.7.6"
+enum-display = "0.2.1"
+chrono = { version = "0.4.45", features = ["serde"] }

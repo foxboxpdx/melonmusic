@@ -36,7 +36,7 @@ pub fn NavBar() -> Html {
 #[derive(Properties, Clone, PartialEq)]
 pub struct IconProps {
     #[prop_or_default]
-    title: String
+    pub title: String
 }
 
 // External link

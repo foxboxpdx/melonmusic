@@ -57,7 +57,11 @@ pub fn run_app() {
 #[derive(Debug, Clone)]
 pub enum Endpoint {
     /// Server status information
-    Status
+    Status,
+    /// Landing page
+    Landing,
+    /// Search page
+    Search
 }
 
 // Impl to_string()
@@ -66,6 +70,8 @@ impl std::fmt::Display for Endpoint {
         let top = "api/v1/frontend";
         match self {
             Endpoint::Status => write!(f, "{top}/status"),
+            Endpoint::Landing => write!(f, "{top}/landing"),
+            Endpoint::Search => write!(f, "{top}/search")
         }
     }
 }

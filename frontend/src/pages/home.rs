@@ -1,6 +1,7 @@
 //! home.rs
 //! Defines a landing page at the root url
 use crate::{authheader, Endpoint, get_apiurl};
+use crate::components::{ContentHeader, NavBar, ErrorPage};
 use yew::{Component, Context, html, Html};
 use gloo_net::http::Request;
 
@@ -81,9 +82,36 @@ impl Component for LandingPage {
             html! { {"Loading..."} }
         } else if let Some(_e) = &self.state.data_error {
             // Error page
-            html! { {"Error"} }
+            html! { <ErrorPage caller={"Landing Page"} error={"Oh no"} /> }
         } else {
-            html! { <>{"Success"} {self.state.data}</> }
+            html! {
+                <div class="top_container">
+                    <NavBar/>
+                    <div class="top_column">
+                        <div class="content_pane_wrapper">
+                            <div class="content_pane">
+                                <ContentHeader title={"Welcome"} />
+                                <div class="content_body_wrapper">
+                                    <div class="content_body">
+                                        <div class="content_card_box">
+                                            <div class="content_card">
+                                                <div class="content_card_titlebar cctb_onecol">
+                                                    <div class="content_card_titlebar_text">{"Welcome"}</div>
+                                                </div>
+                                                <div class="ccb_three">
+                                                    <div class="content_card_header">{"Foo"}</div>
+                                                    <div class="content_card_header">{"Bar"}</div>
+                                                    <div class="content_card_header">{"Baz"}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         }
     }
 }
