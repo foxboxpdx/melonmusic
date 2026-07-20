@@ -53,25 +53,34 @@ pub fn run_app() {
 
 /* Enum and accessories for available backend endpoints */
 
-/// Backend Endpoints
+/// Backend Endpoints (all GET unless otherwise specified)
 #[derive(Debug, Clone)]
 pub enum Endpoint {
     /// Server status information
     Status,
     /// Landing page
     Landing,
-    /// Search page
-    Search
+    /// Add a song (POST)
+    AddSong,
+    /// Rate a song (POST)
+    RateSong,
+    /// List all songs
+    ListAll,
+    /// List by genre/user/artist/rated/unrated
+    ListBy(String, String)
 }
 
 // Impl to_string()
 impl std::fmt::Display for Endpoint {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        let top = "api/v1/frontend";
+        let top = "api/v1";
         match self {
-            Endpoint::Status => write!(f, "{top}/status"),
-            Endpoint::Landing => write!(f, "{top}/landing"),
-            Endpoint::Search => write!(f, "{top}/search")
+            Endpoint::Status           => write!(f, "{top}/status"),
+            Endpoint::Landing          => write!(f, "{top}/landing"),
+            Endpoint::AddSong          => write!(f, "{top}/addsong"),
+            Endpoint::RateSong         => write!(f, "{top}/ratesong"),
+            Endpoint::ListAll          => write!(f, "{top}/list/all"),
+            Endpoint::ListBy(t, q)     => write!(f, "{top}/list/by/{t}/{q}")
         }
     }
 }
