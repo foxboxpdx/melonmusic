@@ -36,6 +36,9 @@ pub type Pool = bb8::Pool<SyncConnectionWrapper<SqliteConnection>>;
 /// Shortcut type for a DB connection
 pub type Db = bb8::PooledConnection<'static, AsyncDieselConnectionManager<SyncConnectionWrapper<SqliteConnection>>>;
 
+/// Shortcut type for a DB connection passed to another function
+pub type DbPass = SyncConnectionWrapper::<SqliteConnection>;
+
 /// Run any pending migrations
 pub async fn do_migrations(db: &Pool) -> Result<(), FatalBackendError> {
     let migrations = FileBasedMigrations::find_migrations_directory()?;
